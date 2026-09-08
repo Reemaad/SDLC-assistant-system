@@ -1,0 +1,71 @@
+```plantuml
+@startuml container
+
+!include <C4/C4_Container>
+
+title Northline Shop - Container Diagram (C4 Level 2)
+
+LAYOUT_WITH_LEGEND()
+
+' People
+Person(shopper, "Shopper", "Buys home products on the Northline website")
+Person(warehouse_staff, "Warehouse Staff", "Picks and packs the orders in Riyadh")
+
+' NorthlineCore system
+System_Boundary(northline, "Northline Shop") {
+    Container(gateway, "Gateway", "nginx", "Decides which system answers each request, old paths go to the old service")
+
+    Container(core, "NorthlineCore", "PHP monolith, 2011", "Still handles cart, shipping and everything not yet")
+
+    Container(catalog, "Catalog Service", "Node.js and Express", "Answers questions about products. owns the")
+
+    Container(checkout, "Checkout Service", "Node.js", "Handles checkout and order creation")
+
+    Container(warehouse, "Warehouse Service", "Node.js", "Manages stock, picking, packing, and warehouse operations")
+
+    ContainerDB(events)
+    ContainerDB(seassions)
+
+}
+
+' External systems
+System_Ext(payment_gateway, "Payment Gateway", "Takes the card payment and confirms it")
+
+
+
+
+
+
+
+
+
+
+
+
+' Shopper interactions
+Rel(shopper, catalog, "Browses products", "HTTPS")
+
+Rel(shopper, cart, "Adds and removes products from cart", "HTTPS")
+
+Rel(shopper, checkout, "Places an order and pays", "HTTPS")
+
+' Warehouse interactions
+Rel(warehouse_staff, warehouse, "Reads pick lists and marks items as packed", "HTTPS")
+
+' Internal relationships
+Rel(cart, catalog, "Gets product and pricing information", "HTTPS")
+
+Rel(checkout, cart, "Gets selected products", "HTTPS")
+
+Rel(checkout, payment_gateway, "Requests card payment", "HTTPS")
+
+Rel(checkout, shipping, "Creates delivery request", "HTTPS")
+
+Rel(shipping, shipping_partner, "Sends delivery request", "HTTPS")
+
+Rel(warehouse, shipping, "Provides packed order information", "HTTPS")
+
+' Finance integration
+Rel(checkout, erp, "Sends daily sales file", "HTTPS")
+
+@enduml

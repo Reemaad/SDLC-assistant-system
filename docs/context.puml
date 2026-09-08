@@ -1,0 +1,43 @@
+' Everything after a single quote is a comment. PlantUML ignores it.
+' A diagram always starts with @startuml and a name.
+@startuml context
+
+
+!include <C4/C4_Context>
+
+
+title SDLC - System Context Diagram (C4 Level 1)
+
+
+' Put a small legend at the bottom explaining the colors
+LAYOUT_WITH_LEGEND()
+
+
+' A person is a human being who uses the system.
+' The three parts are: short id, name on the box, description under the name.
+Person(PM, "Project Manager", "Manages the project")
+Person(TechLead, "Technical Lead", "Leads the dev team")
+Person(QALead, "QA Lead", "Leads the QA team")
+
+
+' A system is a thing we own and can change.
+ System(SDLC_assistant_system, "SDLCAssistantSystem", "The portal the helps the company manage and track software projects")
+
+
+ ' A System_Ext is a system somebody else owns. we cannot change it.
+System_Ext(jira, "Jira", "projects management tool")
+System_Ext(sso, "Microsoft Single sign on", "Authinticates the users")
+
+
+' Rel means relationship. It draws an arrow from the first id to the second id
+' The text is waht the arrow does, written from the caller's point of view
+Rel(PM, SDLC_assistant_system, "Validate QA and Dev teams capacity reports and mange sprints", "HTTPS")
+Rel(TechLead, SDLC_assistant_system, "Submit tasks estimation and DEV team capacity", "HTTPS")
+Rel(QALead, SDLC_assistant_system, "Submit testing estimation and QA team capacity", "HTTPS")
+Rel(SDLC_assistant_system, jira, "Reads/Updates jira project info (e.g. resources, issues, USs)", "HTTPS")
+Rel(SDLC_assistant_system, sso, "Authenticate", "HTTPS")
+
+
+
+' Every diagram must be closed with @enduml
+@enduml
