@@ -63,9 +63,6 @@ Rel(backendApi, jiraIntegration, "Requests Jira data", "Internal API")
 Rel(backendApi, portalDatabase, "Reads and writes portal data", "SQL")
 
 Rel(reportService, portalDatabase, "Reads reporting data", "SQL")
-
-Rel(capacityService, portalDatabase, "Reads workload data", "SQL")
-
 Rel(jiraIntegration, jira, "Reads and updates issues", "HTTPS/REST")
 
 @enduml
