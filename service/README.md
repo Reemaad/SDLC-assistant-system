@@ -5,15 +5,25 @@ We always write place holder `{DB_PASSWORD}` instead.
 
 ## Commands
 Run capacityAnalysisBefore.js:
-`docker run --rm -v "$(pwd):/app" -w /app node:22 node capacity-analysis-before.js `
+`docker run --rm -v "$(pwd):/app" -w /app node:22 node service/before/capacity-analysis-before.js`
 
-Run capacity_analysis.js:
+Run app.js:
+`docker run --rm -v "$(pwd):/app" -w /app node:22 node service/app.js`
 
-Run reportService.js:
 
-
+## Old Architucture Issues
+    - Hard to maintain
+    - Hard to add features
+    - Expensive deployment
 
 
 ## New Architucture
 Monolith Microservices
+
+
+
+## TODOs
+    - Add jira integration service
+    - Add (package.json) & (server.js) & (Dockerfile) to capacity anaysis service & integration service
+    -
 
