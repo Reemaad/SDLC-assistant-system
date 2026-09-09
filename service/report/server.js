@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // A name for this service, used in every log line so we know who spoke.
-const SERVICE = "capacity-analysis";
+const SERVICE = "report";
 
 // The container id, so when we run three copies we can see which one answered.
 // Docker sets HOSTNAME automatically to a short random id.

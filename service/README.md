@@ -10,6 +10,9 @@ Run capacityAnalysisBefore.js:
 Run app.js:
 `docker run --rm -v "$(pwd):/app" -w /app node:22 node service/app.js`
 
+Run containers:
+`docker compose up -d --build`
+`docker compose logs --tail 20 report`
 
 ## Old Architucture Issues
     - Hard to maintain
