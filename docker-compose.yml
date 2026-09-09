@@ -66,3 +66,32 @@ services:
       - "9092:9092"
     # Restart it if it crashes.
     restart: unless-stopped
+
+
+  # The Jira integration service. It runs once, prints, and stops.
+  jira-integration:
+    build: ./service/jira_integration
+    container_name: sdlc-jira-integration
+    environment:
+      # Tell it where the event log is, using the service name on the private network.
+      KAFKA_BROKER: "redpanda:29092"
+    # Do not start this until redpanda has been created.
+    depends_on:
+      - redpanda
+    profiles:
+      - manual
+
+
+  # NEW: the checkout publisher. It runs once, prints, and stops.
+  core:
+    build: ./service/core
+    container_name: sdlc-core
+    environment:
+      KAFKA_BROKER: "redpanda:29092"
+    depends_on:
+      - redpanda
+    # A profile means "do not start this with everything else".
+    # We will start it by hand, only when we want to send events.
+    restart: unless-stopped
+
+   
