@@ -1,0 +1,13 @@
+{
+    "name": "sdlc-assistant-system-capacity-analysis",
+    "version": "1.0.0",
+    "private": true,
+    "description": "capacity analysis service. Owns the member capacity data.",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "4.19.2"
+    }
+  }
