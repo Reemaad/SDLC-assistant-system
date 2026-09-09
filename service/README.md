@@ -8,11 +8,12 @@ Run capacityAnalysisBefore.js:
 `docker run --rm -v "$(pwd):/app" -w /app node:22 node service/before/capacity-analysis-before.js`
 
 Run app.js:
-`docker run --rm -v "$(pwd):/app" -w /app node:22 node service/app.js`
+`docker run --rm -v "$(pwd):/app" -w /app node:22 node service/core/app.js`
 
 Run containers:
 `docker compose up -d --build`
 `docker compose logs --tail 20 report`
+`docker compose up -d --build --scale report=3`
 
 ## Old Architucture Issues
     - Hard to maintain
@@ -26,7 +27,6 @@ Monolith Microservices
 
 
 ## TODOs
-    - Add jira integration service
-    - Add (package.json) & (server.js) & (Dockerfile) to capacity anaysis service & integration service
-    -
-
+    - Add jira integration service -- Rand 
+    - We will use redis from saving user's input of the capacity report -- Reema & Aljoharah
+    - We need to complete context map

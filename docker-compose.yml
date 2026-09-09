@@ -8,15 +8,11 @@ services:
   report:
     # Build an image from the Dockerfile in this folder, instead of downloading one.
     build: ./service/report
-    # Give the running container a fixed, readable name.
-    container_name: sdlc-report
     # Connect port 8080 on your laptop to port 8080 inside the container.
     # The left number is your laptop. The right number is inside the box.
     ports:
-      - "8080:8080"
-    # Values handed to the program when it starts.
+      - "8080-8082:8080"
     environment:
-      # Which port the program should listen on.
       PORT: "8080"
     # If the container stops because of a crash, start it again.
     restart: unless-stopped
@@ -30,10 +26,10 @@ services:
     # Connect port 8081 on your laptop to port 8080 inside the container.
     # The service listens on 8080 internally, but laptops access it through 8081.
     ports:
-      - "8081:8080"
+      - "8083:8080"
     # Tell the Node.js program which internal port to listen on.
     environment:
-      PORT: "8080"
+      PORT: "8083"
     # If the container stops because of a crash, start it again.
     restart: unless-stopped
 
@@ -68,7 +64,7 @@ services:
     restart: unless-stopped
 
 
-  # The Jira integration service. It runs once, prints, and stops.
+  # The Jira integration service. publisher.
   jira-integration:
     build: ./service/jira_integration
     container_name: sdlc-jira-integration
@@ -81,11 +77,12 @@ services:
     profiles:
       - manual
 
-
-  # NEW: the checkout publisher. It runs once, prints, and stops.
+  # NEW: It listens all day, so it starts with everything else.
   core:
     build: ./service/core
     container_name: sdlc-core
+    ports:
+      - "8084:8084"
     environment:
       KAFKA_BROKER: "redpanda:29092"
     depends_on:

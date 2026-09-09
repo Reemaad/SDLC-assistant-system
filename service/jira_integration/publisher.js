@@ -112,7 +112,7 @@ async function main() {
       ]
     });
     // Confirm on screen what we have written.
-    log({ level: "info", event: "published", event_id: evt.event_id, sku: evt.sku, status: evt.status });
+    log({ level: "info", event: "published", event_id: evt.event_id, sku: evt.sku, status: evt.status, occurred_at: evt.occurred_at });
   }
 
   // Close the connection politely.
