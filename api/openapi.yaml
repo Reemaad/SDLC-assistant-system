@@ -1,0 +1,101 @@
+openapi: 3.0.3
+
+info:
+  title: Capacity Analysis API
+  version: 1.0.0
+  description: API for calculating and analyzing team capacity
+
+paths:
+
+  /capacity-analysis:
+    post:
+      summary: Generate capacity analysis
+      operationId: generateAnalysis
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Report'
+
+      responses:
+        '200':
+          description: Capacity analysis successfully generated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CapacityAnalysis'
+
+        '400':
+          description: Invalid report data
+
+
+components:
+
+  schemas:
+
+    Report:
+      type: object
+      required:
+        - availableHours
+        - teamMembers
+
+      properties:
+
+        availableHours:
+          type: number
+          example: 240
+
+        teamMembers:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+
+
+    TeamMember:
+      type: object
+      required:
+        - id
+        - name
+        - role
+        - assignedHours
+
+      properties:
+
+        id:
+          type: integer
+          example: 1
+
+        name:
+          type: string
+          example: Ahmed
+
+        role:
+          type: string
+          example: Developer
+
+        assignedHours:
+          type: number
+          example: 80
+
+
+    CapacityAnalysis:
+      type: object
+      properties:
+
+        totalCapacity:
+          type: number
+          example: 180
+
+        utilization:
+          type: number
+          example: 75
+
+        status:
+          type: string
+          enum:
+            - AVAILABLE
+            - FULL
+            - OVERLOADED
+          example: AVAILABLE

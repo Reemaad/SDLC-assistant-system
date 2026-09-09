@@ -1,7 +1,7 @@
-const ReportService = require("./report/reportService.js");
+const ReportService = require("./report/report-service.js");
 
 const CapacityAnalysisService =
-  require("./capacityAnalysis/capacityAnalysis.js");
+  require("./capacity_analysis/capacity-analysis.js");
 
 
 const report = {
