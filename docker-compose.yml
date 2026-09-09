@@ -21,6 +21,22 @@ services:
     # If the container stops because of a crash, start it again.
     restart: unless-stopped
 
+  # Our Capacity Analysis service.
+  capacity-analysis:
+    # Build an image from the Dockerfile in the capacity_analysis folder.
+    build: ./service/capacity_analysis
+    # Give the running container a fixed, readable name.
+    container_name: sdlc-capacity-analysis
+    # Connect port 8081 on your laptop to port 8080 inside the container.
+    # The service listens on 8080 internally, but laptops access it through 8081.
+    ports:
+      - "8081:8080"
+    # Tell the Node.js program which internal port to listen on.
+    environment:
+      PORT: "8080"
+    # If the container stops because of a crash, start it again.
+    restart: unless-stopped
+
   # The event log. It speaks the Kafka protocol but is one small container.
   redpanda:
     # The official Redpanda image.
