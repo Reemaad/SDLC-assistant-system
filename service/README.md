@@ -18,8 +18,6 @@ Run containers:
 ## Old Architucture Issues
     - Hard to maintain
     - Hard to add features
-    - Expensive deployment
-
 
 ## New Architucture
 Monolith Microservices
@@ -29,4 +27,4 @@ Monolith Microservices
 ## TODOs
     - Add jira integration service -- Rand 
     - We will use redis from saving user's input of the capacity report -- Reema & Aljoharah
-    - We need to complete context map
+    - We need to complete context map -- Rawan

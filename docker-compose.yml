@@ -82,13 +82,10 @@ services:
     build: ./service/core
     container_name: sdlc-core
     ports:
-      - "8084:8084"
+      - "8084:8080"
     environment:
-      KAFKA_BROKER: "redpanda:29092"
+      SESSION_STORE: "memory"
     depends_on:
       - redpanda
-    # A profile means "do not start this with everything else".
-    # We will start it by hand, only when we want to send events.
-    restart: unless-stopped
 
    

@@ -3,11 +3,13 @@
     "version": "1.0.0",
     "private": true,
     "description": "Core service. Consume events from Jira integration and update sprint information.",
-    "main": "consumer.js",
+    "main": "app.js",
     "scripts": {
-      "start": "node consumer.js"
+      "start": "node app.js"
     },
     "dependencies": {
-      "kafkajs": "2.2.4"
+      "express": "4.19.2",
+      "redis": "4.7.0",
+      "axios": "^1.7.0"
     }
   }
