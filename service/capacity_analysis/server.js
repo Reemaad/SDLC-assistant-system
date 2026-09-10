@@ -39,19 +39,6 @@ app.get("/health", function (req, res) {
 });
 
 // Door 2: generate a capacity analysis.
-//
-// Expected request:
-// {
-//   "availableHours": 240,
-//   "teamMembers": [
-//     {
-//       "id": 1,
-//       "name": "Ahmed",
-//       "role": "Developer",
-//       "assignedHours": 80
-//     }
-//   ]
-// }
 app.post("/capacity-analysis", function (req, res) {
   const report = req.body;
 
