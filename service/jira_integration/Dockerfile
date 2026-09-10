@@ -8,6 +8,6 @@ RUN npm install
 
 COPY jira-integration.js ./
 
-EXPOSE 8082
+EXPOSE 8080
 
-CMD ["npm", "start"]
+CMD ["node", "jira-integration.js"]

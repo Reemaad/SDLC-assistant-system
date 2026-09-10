@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 
-const PORT = 8082;
+const PORT = process.env.PORT || 8080;
 
 const JIRA_URL =
   process.env.JIRA_URL || "http://jira.invalid/sprint";

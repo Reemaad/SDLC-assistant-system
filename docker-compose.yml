@@ -68,14 +68,8 @@ services:
   jira-integration:
     build: ./service/jira_integration
     container_name: sdlc-jira-integration
-    environment:
-      # Tell it where the event log is, using the service name on the private network.
-      KAFKA_BROKER: "redpanda:29092"
-    # Do not start this until redpanda has been created.
-    depends_on:
-      - redpanda
-    profiles:
-      - manual
+    ports:
+      - "8090:8080"
 
   # NEW: It listens all day, so it starts with everything else.
   core:
