@@ -1,13 +1,11 @@
 {
     "name": "jira-integration",
     "version": "1.0.0",
-    "private": true,
-    "description": "Jira-integration service. Integrate with Jira system.",
-    "main": "publisher.js",
+    "main": "jira-integration.js",
     "scripts": {
-      "start": "node publisher.js"
+      "start": "node jira-integration.js"
     },
     "dependencies": {
-      "kafkajs": "2.2.4"
+      "express": "^5.1.0"
     }
   }

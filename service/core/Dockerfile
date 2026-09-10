@@ -19,4 +19,4 @@ COPY . ./
 USER node
 
 # When the container starts, publish the events once and stop.
-CMD ["node", "consumer.js"]
+CMD ["node", "app.js"]
